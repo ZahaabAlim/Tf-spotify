@@ -13,13 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
       with:
-        node-version: '14'
+        python-version: '3.x'
 
-    - name: Run auth.js
-      run: node auth.js
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run auth.py
+      run: python auth.py
       env:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
