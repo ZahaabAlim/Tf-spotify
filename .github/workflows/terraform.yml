@@ -13,14 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Docker
+      - name: Get Spotify Token
         run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-          sudo apt-get install -y containerd.io || sudo apt-get install -y containerd
-
-      - name: Run Docker container
-        run: docker run --rm -it -p 27228:27228 --env-file .env ghcr.io/conradludgate/spotify-auth-proxy
+          curl -X POST "https://accounts.spotify.com/api/token" \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          -d "grant_type=client_credentials&client_id=${{ secrets.SPOTIFY_CLIENT_ID }}&client_secret=${{ secrets.SPOTIFY_CLIENT_SECRET }}"
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
