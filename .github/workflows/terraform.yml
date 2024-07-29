@@ -16,20 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # - name: Setup Python
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: '3.11'  # Use the latest Python version
-
-    # - name: Install dependencies
-    #   run: pip install requests
-
-    # - name: Run auth.py
-    #   run: python auth.py
-    #   env:
-    #     SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-    #     SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-
     - name: Install Docker
       run: |
         sudo apt-get update
